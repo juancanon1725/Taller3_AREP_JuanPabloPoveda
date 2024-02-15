@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Movies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1 id="title">Search Movies</h1>
+<form>
+    <label for="movie">Movie:</label><br>
+    <input type="text" id="movie" name="movie" value="Guardians of the Galaxy" onkeypress="handleKeyPress(event)"><br><br>
+    <input type="button" value="Submit" onclick="loadGetMsg()">
+</form>
+<div id="getrespmsg"></div>
+<script>
+            function loadGetMsg() {
+                let nameVar = document.getElementById("name").value;
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("getrespmsg").innerHTML =
+                    this.responseText;
+                }
+                xhttp.open("GET", "/info?title="+nameVar);
+                xhttp.send();
+            }
+        </script>
+<br><br>
+<img src="/maravillas.jpg" alt="Maravillas" id="maravillas">
+<script src="script.js"></script>
+</body>
+</html>
